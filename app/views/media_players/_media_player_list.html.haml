@@ -1,0 +1,16 @@
+%table
+  %thead
+    %tr
+      %th Name
+      %th Description
+      %th Price
+      %th Option
+  %tbody
+    - @media_players.each do |media_player|
+      %tr 
+        %td= media_player.name
+        %td= media_player.description
+        %td= media_player.price
+        %td
+          = link_to "Delete", media_player, method: :delete, data: { confirm: "Are you sure you want to remove this 'Media Player'?"}, class: 'tiny alert button'
+          = link_to "Edit", edit_media_player_path(media_player), class: 'tiny button'

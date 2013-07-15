@@ -1,0 +1,10 @@
+%h2 Choose Help Desk Level
+
+
+= simple_form_for @quote, url: wizard_path, :method => :put do |f|
+  Choose One
+  %br
+  %br
+  = f.collection_radio_buttons :help_desk_id, @levels, :first, :last
+  %br
+  = f.button :submit

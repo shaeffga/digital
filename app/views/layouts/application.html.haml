@@ -1,0 +1,43 @@
+!!!
+%html
+  %head
+    %title Digital Signage
+    /[if IE]
+      %script{:type => "text/javascript", :src => "http://html5shim.googlecode.com/svn/trunk/html5.js"}
+    = stylesheet_link_tag    "application"
+    = javascript_include_tag "application"
+    = csrf_meta_tags
+    %meta{name: "viewport", content: "width=device-width, initial-scale=1.0"}
+  %body{ data: { controller: "#{controller_name}", action: "#{action_name}" } }
+    .fixed
+      %nav.top-bar
+        %ul.title-area
+          %li.name
+            = link_to image_tag('.png'), root_path
+          %li.toggle-topbar
+            %a{ href: "#"}
+        - if current_user
+          %section.top-bar-section
+            %ul.left
+              %li
+                = link_to 'User', quotes_path
+              - if can? :manage, HelpDesk
+                %li
+                  = link_to 'Admin', home_index_path
+            %ul.right
+              %li.has-dropdown
+                = link_to current_user.email, '#', id: 'logged_user'
+                %ul.dropdown
+                  %li
+                    =link_to 'Edit Account', edit_user_registration_path
+                  %li.sign-out= link_to 'Sign Out', destroy_user_session_path, method: :delete
+    .container
+      .row
+        .twelve.columns
+          #flash
+            - flash.each do |name, msg|
+              %div{class: "alert-box #{name == :notice ? "success" : "alert"}"}
+                %a{class: "close", href: "#"} &times
+                = msg
+      .row
+        = yield

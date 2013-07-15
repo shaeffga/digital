@@ -1,0 +1,16 @@
+%table
+  %thead
+    %tr
+      %th Name
+      %th Description
+      %th Price
+      %th Option
+  %tbody
+    - @services.each do |service|
+      %tr 
+        %td= service.name
+        %td= service.description
+        %td= service.price
+        %td
+          = link_to "Delete", service, method: :delete, data: { confirm: "Are you sure you want to remove this 'service'?"}, class: 'tiny alert button'
+          = link_to "Edit", edit_service_path(service), class: 'tiny button'

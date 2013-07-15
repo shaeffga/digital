@@ -1,0 +1,16 @@
+%table
+  %thead
+    %tr
+      %th Name
+      %th Description
+      %th Price
+      %th Option
+  %tbody
+    - @hourly_services.each do |hourly_service|
+      %tr 
+        %td= hourly_service.name
+        %td= hourly_service.description
+        %td= hourly_service.price
+        %td
+          = link_to "Delete", hourly_service, method: :delete, data: { confirm: "Are you sure you want to remove this 'Hourly Service'?"}, class: 'tiny alert button'
+          = link_to "Edit", edit_hourly_service_path(hourly_service), class: 'tiny button'

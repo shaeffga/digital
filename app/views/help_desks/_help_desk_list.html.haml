@@ -1,0 +1,17 @@
+%table
+  %thead
+    %tr
+      %th Name
+      %th Description
+      %th Price
+      %th Option
+  %tbody
+    - @help_desks.each do |help_desk|
+      %tr 
+        %td= help_desk.name
+        %td= help_desk.description
+        %td= help_desk.price
+        %td
+          = link_to "Delete", help_desk, method: :delete, data: { confirm: "Are you sure you want to remove this 'Help Desk'?"}, class: 'tiny alert button'
+          = link_to "Edit", edit_help_desk_path(help_desk), class: 'tiny button'
+
